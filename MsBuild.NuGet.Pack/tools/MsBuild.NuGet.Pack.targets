@@ -30,6 +30,12 @@
     <CreateSymbolsPackage Condition="'$(CreateSymbolsPackage)' == ''">true</CreateSymbolsPackage>
   </PropertyGroup>
 
+  <Target Name="BuildPackage-Get-Sourcefiles" Condition="$(CreateSymbolsPackage)" BeforeTargets="BeforeBuild">
+    <ItemGroup >
+      <NugetSymbolSourceFiles Condition="$(CreateSymbolsPackage)" Include="@(Compile)"/>
+    </ItemGroup>
+  </Target>
+
   <!-- 
   Create Octopus Deploy package
   -->
@@ -52,13 +58,13 @@
       FileExclusionPattern="$(FileExclusionPattern)"
       TargetFrameworkVersion="$(TargetFrameworkVersion)"
       TargetFrameworkProfile="$(TargetFrameworkProfile)" />
-
+    
     <BuildNuSpecTask
       NuGetPath="$(NuGetExePath)"
       NuSpecPath="$(NuSpecPath)"
       ProjectDirectory="$(ProjectDirectory)"
       CreateSymbolsPackage="$(CreateSymbolsPackage)"
+      NugetSymbolSourceFiles="@(NugetSymbolSourceFiles)"
       OutDir="$(NugetPackageTargetDir)" />
-
   </Target>
 </Project>

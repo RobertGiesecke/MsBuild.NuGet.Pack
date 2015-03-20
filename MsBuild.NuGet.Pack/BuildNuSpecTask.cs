@@ -176,5 +176,11 @@
       get;
       set;
     }
+
+    public ITaskItem[] NugetSymbolSourceFiles
+    {
+      get;
+      set;
+    }
   }
 }
