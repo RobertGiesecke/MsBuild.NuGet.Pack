@@ -27,7 +27,7 @@
     <ProjectDirectory Condition="'$(ProjectDirectory)' == ''">$(MSBuildProjectDirectory)</ProjectDirectory>
     <NuSpecPath>$(TargetDir)\$(NuSpecFileName)</NuSpecPath>
     <DontUseWindowsDisplayName Condition="'$(DontUseWindowsDisplayName)' == ''">false</DontUseWindowsDisplayName>
-
+    <CreateSymbolsPackage Condition="'$(CreateSymbolsPackage)' == ''">true</CreateSymbolsPackage>
   </PropertyGroup>
 
   <!-- 
@@ -57,6 +57,7 @@
       NuGetPath="$(NuGetExePath)"
       NuSpecPath="$(NuSpecPath)"
       ProjectDirectory="$(ProjectDirectory)"
+      CreateSymbolsPackage="$(CreateSymbolsPackage)"
       OutDir="$(NugetPackageTargetDir)" />
 
   </Target>
